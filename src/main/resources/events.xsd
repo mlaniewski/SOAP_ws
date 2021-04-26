@@ -1,36 +1,31 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.event.bialystok.com"
            targetNamespace="http://ws.event.bialystok.com" elementFormDefault="qualified">
 
-    <xs:element name="getCountryRequest">
+    <xs:element name="getAllEventsRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="eventList" minOccurs="0" maxOccurs="unbounded" type="tns:event"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getCountryResponse">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="country" type="tns:country"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-
-    <xs:complexType name="country">
+    <xs:complexType name="event">
         <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="population" type="xs:int"/>
-            <xs:element name="capital" type="xs:string"/>
-            <xs:element name="currency" type="tns:currency"/>
+            <xs:element name="type" type="tns:type"/>
+            <xs:element name="date" type="xs:date"/>
+            <xs:element name="week" type="xs:int"/>
+            <xs:element name="month" type="xs:int"/>
+            <xs:element name="year" type="xs:int"/>
+            <xs:element name="description" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 
-    <xs:simpleType name="currency">
+    <xs:simpleType name="type">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="GBP"/>
-            <xs:enumeration value="EUR"/>
-            <xs:enumeration value="PLN"/>
+            <xs:enumeration value="SPORT"/>
+            <xs:enumeration value="CULTURAL"/>
         </xs:restriction>
     </xs:simpleType>
 
