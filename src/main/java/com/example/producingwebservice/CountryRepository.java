@@ -1,7 +1,7 @@
 package com.example.producingwebservice;
 
-import localhost._8080.Country;
-import localhost._8080.Currency;
+import com.bialystok.event.ws.Country;
+import com.bialystok.event.ws.Currency;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
