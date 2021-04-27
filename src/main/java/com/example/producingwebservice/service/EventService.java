@@ -1,7 +1,7 @@
 package com.example.producingwebservice.service;
 
-import com.bialystok.event.ws.GetAllEventsResponse;
+import com.bialystok.event.ws.EventsListResponse;
 
 public interface EventService {
-    GetAllEventsResponse getAllEvents();
+    EventsListResponse getAllEvents();
 }

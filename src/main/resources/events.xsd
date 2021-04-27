@@ -7,7 +7,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getAllEventsResponse">
+    <xs:element name="eventsListResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="eventList" minOccurs="0" maxOccurs="unbounded" type="tns:event"/>
