@@ -7,12 +7,12 @@ import com.bialystok.event.ws.EventsListResponse;
 import com.example.producingwebservice.repository.EventRepository;
 import com.example.producingwebservice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.List;
 
-@Component
+@Service
 public class EventServiceImpl implements EventService {
 
     @Autowired
