@@ -28,14 +28,14 @@ public class EventRepository {
         EVENTS.put(event1.getId(), event1);
 
         Event event2 = new Event();
-        event1.setId(2);
-        event1.setName("Event 2");
-        event1.setType(Type.CULTURAL);
-        event1.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 1, 20, 22, 30, 0));
-        event1.setDescription("Long description of Event 2");
-        event1.setYear(2021);
-        event1.setMonth(1);
-        event1.setWeek(4);
+        event2.setId(2);
+        event2.setName("Event 2");
+        event2.setType(Type.CULTURAL);
+        event2.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 1, 20, 22, 30, 0));
+        event2.setDescription("Long description of Event 2");
+        event2.setYear(2021);
+        event2.setMonth(1);
+        event2.setWeek(4);
 
         EVENTS.put(event2.getId(), event2);
     }

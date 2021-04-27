@@ -1,6 +1,6 @@
 package com.example.producingwebservice.endpoint;
 
-import com.bialystok.event.ws.GetAllEventsRequest;
+import com.bialystok.event.ws.GetAllEventsResponse;
 import com.example.producingwebservice.service.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -16,7 +16,7 @@ public class EventEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEventsRequest")
     @ResponsePayload
-    public GetAllEventsRequest getAllEvents() {
+    public GetAllEventsResponse getAllEvents() {
         return eventService.getAllEvents();
     }
 }

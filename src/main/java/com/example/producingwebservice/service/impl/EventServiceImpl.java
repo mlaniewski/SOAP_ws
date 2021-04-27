@@ -1,7 +1,7 @@
 package com.example.producingwebservice.service.impl;
 
 import com.bialystok.event.ws.Event;
-import com.bialystok.event.ws.GetAllEventsRequest;
+import com.bialystok.event.ws.GetAllEventsResponse;
 import com.example.producingwebservice.repository.EventRepository;
 import com.example.producingwebservice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
 
     @Override
-    public GetAllEventsRequest getAllEvents() {
-        GetAllEventsRequest response = new GetAllEventsRequest();
+    public GetAllEventsResponse getAllEvents() {
+        GetAllEventsResponse response = new GetAllEventsResponse();
         List<Event> events = eventRepository.findAll();
         response.getEventList().addAll(events);
 
