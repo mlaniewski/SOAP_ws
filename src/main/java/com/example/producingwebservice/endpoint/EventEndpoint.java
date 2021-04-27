@@ -1,8 +1,6 @@
 package com.example.producingwebservice.endpoint;
 
-import com.bialystok.event.ws.EventsListResponse;
-import com.bialystok.event.ws.GetEventsByDateRequest;
-import com.bialystok.event.ws.GetEventsByWeekRequest;
+import com.bialystok.event.ws.*;
 import com.example.producingwebservice.service.impl.EventServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -33,5 +31,11 @@ public class EventEndpoint {
     @ResponsePayload
     public EventsListResponse getEventsByWeek(@RequestPayload GetEventsByWeekRequest request) {
         return eventService.getEventsByWeek(request.getWeek());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEventDetailsByIdRequest")
+    @ResponsePayload
+    public EventDetailsResponse getEventsByWeek(@RequestPayload GetEventDetailsByIdRequest request) {
+        return eventService.getEventById(request.getId());
     }
 }

@@ -42,16 +42,12 @@ public class EventRepository {
         events.put(event2.getId(), event2);
     }
 
-    public Event findEvent(Integer id) {
-        Assert.notNull(id, "The event's id must not be null");
-        return events.get(id);
-    }
-
     public List<Event> findAll() {
         return new ArrayList<>(events.values());
     }
 
     public List<Event> findByDate(XMLGregorianCalendar date) {
+        Assert.notNull(date, "The date must not be null");
         return events.values()
                 .stream()
                 .filter(event -> event.getDate().getYear() == date.getYear() &&
@@ -61,9 +57,15 @@ public class EventRepository {
     }
 
     public List<Event> findByWeek(Integer week) {
+        Assert.notNull(week, "The week must not be null");
         return events.values()
                 .stream()
                 .filter(event -> event.getDate().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR) == week)
                 .collect(Collectors.toList());
+    }
+
+    public Event findById(Integer id) {
+        Assert.notNull(id, "The event's id must not be null");
+        return events.get(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.producingwebservice.service.impl;
 
 import com.bialystok.event.ws.Event;
+import com.bialystok.event.ws.EventDetailsResponse;
 import com.bialystok.event.ws.EventsListResponse;
 import com.example.producingwebservice.repository.EventRepository;
 import com.example.producingwebservice.service.EventService;
@@ -38,6 +39,13 @@ public class EventServiceImpl implements EventService {
         EventsListResponse response = new EventsListResponse();
         List<Event> events = eventRepository.findByWeek(week);
         response.getEventList().addAll(events);
+        return response;
+    }
+
+    @Override
+    public EventDetailsResponse getEventById(Integer id) {
+        EventDetailsResponse response = new EventDetailsResponse();
+        response.setEventDetails(eventRepository.findById(id));
         return response;
     }
 }
