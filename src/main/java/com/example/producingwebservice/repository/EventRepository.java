@@ -44,7 +44,10 @@ public class EventRepository {
     }
 
     public List<Event> findAll() {
-        return new ArrayList<>(events.values());
+        return events.values()
+                .stream()
+                .sorted((e1, e2) -> e1.getDate().compare(e2.getDate()))
+                .collect(Collectors.toList());
     }
 
     public List<Event> findByDate(XMLGregorianCalendar date) {

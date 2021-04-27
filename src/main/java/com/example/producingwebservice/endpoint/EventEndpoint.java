@@ -8,9 +8,6 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-
 @Endpoint
 public class EventEndpoint {
     private static final String NAMESPACE_URI = "http://ws.event.bialystok.com";
@@ -51,11 +48,6 @@ public class EventEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "generateEventsPDFRequest")
     @ResponsePayload
     public EventsListPDFResponse generateEventsPDF(@RequestPayload GenerateEventsPDFRequest request) {
-        EventsListPDFResponse response = new EventsListPDFResponse();
-        FileDataSource fileDataSource = new FileDataSource("/home/mateusz/Pobrane/patrik.png");
-        DataHandler dataHandler = new DataHandler(fileDataSource);
-        response.setContent(dataHandler);
-
-        return response;
+        return eventService.generateEventsListAsPDF();
     }
 }
