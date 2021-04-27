@@ -7,6 +7,7 @@ import com.example.producingwebservice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.List;
 
 @Component
@@ -21,6 +22,22 @@ public class EventServiceImpl implements EventService {
         List<Event> events = eventRepository.findAll();
         response.getEventList().addAll(events);
 
+        return response;
+    }
+
+    @Override
+    public EventsListResponse getEventsByDate(XMLGregorianCalendar date) {
+        EventsListResponse response = new EventsListResponse();
+        List<Event> events = eventRepository.findByDate(date);
+        response.getEventList().addAll(events);
+        return response;
+    }
+
+    @Override
+    public EventsListResponse getEventsByWeek(Integer week) {
+        EventsListResponse response = new EventsListResponse();
+        List<Event> events = eventRepository.findByWeek(week);
+        response.getEventList().addAll(events);
         return response;
     }
 }

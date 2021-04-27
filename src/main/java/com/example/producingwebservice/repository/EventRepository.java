@@ -7,11 +7,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
+import javax.xml.datatype.XMLGregorianCalendar;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class EventRepository {
-    private static final Map<Integer, Event> EVENTS = new HashMap<>();
+    private final Map<Integer, Event> events = new HashMap<>();
 
     @PostConstruct
     public void initData() {
@@ -25,7 +27,7 @@ public class EventRepository {
         event1.setMonth(5);
         event1.setWeek(15);
 
-        EVENTS.put(event1.getId(), event1);
+        events.put(event1.getId(), event1);
 
         Event event2 = new Event();
         event2.setId(2);
@@ -37,19 +39,31 @@ public class EventRepository {
         event2.setMonth(1);
         event2.setWeek(4);
 
-        EVENTS.put(event2.getId(), event2);
+        events.put(event2.getId(), event2);
     }
 
     public Event findEvent(Integer id) {
         Assert.notNull(id, "The event's id must not be null");
-        return EVENTS.get(id);
+        return events.get(id);
     }
 
     public List<Event> findAll() {
-        List<Event> events = new LinkedList<>();
-        EVENTS.forEach((id, event) -> {
-            events.add(event);
-        });
-        return events;
+        return new ArrayList<>(events.values());
+    }
+
+    public List<Event> findByDate(XMLGregorianCalendar date) {
+        return events.values()
+                .stream()
+                .filter(event -> event.getDate().getYear() == date.getYear() &&
+                                 event.getDate().getMonth() == date.getMonth() &&
+                                 event.getDate().getDay() == date.getDay())
+                .collect(Collectors.toList());
+    }
+
+    public List<Event> findByWeek(Integer week) {
+        return events.values()
+                .stream()
+                .filter(event -> event.getDate().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR) == week)
+                .collect(Collectors.toList());
     }
 }
