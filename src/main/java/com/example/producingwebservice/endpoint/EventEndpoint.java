@@ -38,4 +38,10 @@ public class EventEndpoint {
     public EventDetailsResponse getEventsByWeek(@RequestPayload GetEventDetailsByIdRequest request) {
         return eventService.getEventById(request.getId());
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addEventRequest")
+    @ResponsePayload
+    public EventDetailsResponse addEvent(@RequestPayload AddEventRequest request) {
+        return eventService.addEvent(request.getEventDto());
+    }
 }

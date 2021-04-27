@@ -1,6 +1,7 @@
 package com.example.producingwebservice.repository;
 
 import com.bialystok.event.ws.Event;
+import com.bialystok.event.ws.EventDto;
 import com.bialystok.event.ws.Type;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import org.springframework.stereotype.Component;
@@ -18,8 +19,8 @@ public class EventRepository {
     @PostConstruct
     public void initData() {
         Event event1 = new Event();
-        event1.setId(1);
-        event1.setName("Event 1");
+        event1.setId(0);
+        event1.setName("Event 0");
         event1.setType(Type.SPORT);
         event1.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 5, 10, 12, 0, 0));
         event1.setDescription("Long description of Event 1");
@@ -30,8 +31,8 @@ public class EventRepository {
         events.put(event1.getId(), event1);
 
         Event event2 = new Event();
-        event2.setId(2);
-        event2.setName("Event 2");
+        event2.setId(1);
+        event2.setName("Event 1");
         event2.setType(Type.CULTURAL);
         event2.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 1, 20, 22, 30, 0));
         event2.setDescription("Long description of Event 2");
@@ -60,12 +61,27 @@ public class EventRepository {
         Assert.notNull(week, "The week must not be null");
         return events.values()
                 .stream()
-                .filter(event -> event.getDate().toGregorianCalendar().get(Calendar.WEEK_OF_YEAR) == week)
+                .filter(event -> event.getWeek() == week)
                 .collect(Collectors.toList());
     }
 
     public Event findById(Integer id) {
         Assert.notNull(id, "The event's id must not be null");
         return events.get(id);
+    }
+
+    public Event add(EventDto eventDto) {
+        Event event = new Event();
+        int id = events.size();
+        event.setId(id);
+        event.setName(eventDto.getName());
+        event.setType(eventDto.getType());
+        event.setDate(eventDto.getDate());
+        event.setDescription(eventDto.getDescription());
+        event.setYear(eventDto.getYear());
+        event.setMonth(eventDto.getMonth());
+        event.setWeek(eventDto.getWeek());
+        events.put(id, event);
+        return event;
     }
 }

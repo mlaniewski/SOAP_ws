@@ -2,6 +2,7 @@ package com.example.producingwebservice.service.impl;
 
 import com.bialystok.event.ws.Event;
 import com.bialystok.event.ws.EventDetailsResponse;
+import com.bialystok.event.ws.EventDto;
 import com.bialystok.event.ws.EventsListResponse;
 import com.example.producingwebservice.repository.EventRepository;
 import com.example.producingwebservice.service.EventService;
@@ -46,6 +47,14 @@ public class EventServiceImpl implements EventService {
     public EventDetailsResponse getEventById(Integer id) {
         EventDetailsResponse response = new EventDetailsResponse();
         response.setEventDetails(eventRepository.findById(id));
+        return response;
+    }
+
+    @Override
+    public EventDetailsResponse addEvent(EventDto eventDto) {
+        EventDetailsResponse response = new EventDetailsResponse();
+        Event saved = eventRepository.add(eventDto);
+        response.setEventDetails(saved);
         return response;
     }
 }
