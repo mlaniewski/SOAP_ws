@@ -17,37 +17,37 @@ public class EventEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEventsRequest")
     @ResponsePayload
-    public EventsListResponse getAllEvents() {
+    public GetAllEventsResponse getAllEvents() {
         return eventService.getAllEvents();
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEventsByDateRequest")
     @ResponsePayload
-    public EventsListResponse getEventsByDate(@RequestPayload GetEventsByDateRequest request) {
+    public GetEventsByDateResponse getEventsByDate(@RequestPayload GetEventsByDateRequest request) {
         return eventService.getEventsByDate(request.getDate());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEventsByWeekRequest")
     @ResponsePayload
-    public EventsListResponse getEventsByWeek(@RequestPayload GetEventsByWeekRequest request) {
+    public GetEventsByWeekResponse getEventsByWeek(@RequestPayload GetEventsByWeekRequest request) {
         return eventService.getEventsByWeek(request.getWeek());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEventDetailsByIdRequest")
     @ResponsePayload
-    public EventDetailsResponse getEventsByWeek(@RequestPayload GetEventDetailsByIdRequest request) {
+    public GetEventDetailsByIdResponse getEventsByWeek(@RequestPayload GetEventDetailsByIdRequest request) {
         return eventService.getEventById(request.getId());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addEventRequest")
     @ResponsePayload
-    public EventDetailsResponse addEvent(@RequestPayload AddEventRequest request) {
+    public AddEventResponse addEvent(@RequestPayload AddEventRequest request) {
         return eventService.addEvent(request.getEventDto());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "generateEventsPDFRequest")
     @ResponsePayload
-    public EventsListPDFResponse generateEventsPDF(@RequestPayload GenerateEventsPDFRequest request) {
+    public GenerateEventsPDFResponse generateEventsPDF(@RequestPayload GenerateEventsPDFRequest request) {
         return eventService.generateEventsListAsPDF();
     }
 }

@@ -50,7 +50,7 @@
     </xs:element>
 
     <!-- Responses -->
-    <xs:element name="eventsListResponse">
+    <xs:element name="getAllEventsResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="eventList" minOccurs="0" maxOccurs="unbounded" type="tns:event"/>
@@ -58,7 +58,23 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="eventDetailsResponse">
+    <xs:element name="getEventsByDateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventList" minOccurs="0" maxOccurs="unbounded" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getEventsByWeekResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventList" minOccurs="0" maxOccurs="unbounded" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getEventDetailsByIdResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="eventDetails" type="tns:event"/>
@@ -66,7 +82,15 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="eventsListPDFResponse">
+    <xs:element name="addEventResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventDetails" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="generateEventsPDFResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="content" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>

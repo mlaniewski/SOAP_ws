@@ -23,8 +23,8 @@ public class EventServiceImpl implements EventService {
     private PDFCreator pdfCreator;
 
     @Override
-    public EventsListResponse getAllEvents() {
-        EventsListResponse response = new EventsListResponse();
+    public GetAllEventsResponse getAllEvents() {
+        GetAllEventsResponse response = new GetAllEventsResponse();
         List<Event> events = eventRepository.findAll();
         response.getEventList().addAll(events);
 
@@ -32,41 +32,41 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventsListResponse getEventsByDate(XMLGregorianCalendar date) {
-        EventsListResponse response = new EventsListResponse();
+    public GetEventsByDateResponse getEventsByDate(XMLGregorianCalendar date) {
+        GetEventsByDateResponse response = new GetEventsByDateResponse();
         List<Event> events = eventRepository.findByDate(date);
         response.getEventList().addAll(events);
         return response;
     }
 
     @Override
-    public EventsListResponse getEventsByWeek(Integer week) {
-        EventsListResponse response = new EventsListResponse();
+    public GetEventsByWeekResponse getEventsByWeek(Integer week) {
+        GetEventsByWeekResponse response = new GetEventsByWeekResponse();
         List<Event> events = eventRepository.findByWeek(week);
         response.getEventList().addAll(events);
         return response;
     }
 
     @Override
-    public EventDetailsResponse getEventById(Integer id) {
-        EventDetailsResponse response = new EventDetailsResponse();
+    public GetEventDetailsByIdResponse getEventById(Integer id) {
+        GetEventDetailsByIdResponse response = new GetEventDetailsByIdResponse();
         response.setEventDetails(eventRepository.findById(id));
         return response;
     }
 
     @Override
-    public EventDetailsResponse addEvent(EventDto eventDto) {
-        EventDetailsResponse response = new EventDetailsResponse();
+    public AddEventResponse addEvent(EventDto eventDto) {
+        AddEventResponse response = new AddEventResponse();
         Event saved = eventRepository.add(eventDto);
         response.setEventDetails(saved);
         return response;
     }
 
     @Override
-    public EventsListPDFResponse generateEventsListAsPDF() {
+    public GenerateEventsPDFResponse generateEventsListAsPDF() {
         File pdf = pdfCreator.create(getAllEvents().getEventList());
 
-        EventsListPDFResponse response = new EventsListPDFResponse();
+        GenerateEventsPDFResponse response = new GenerateEventsPDFResponse();
         FileDataSource fileDataSource = new FileDataSource(pdf);
         DataHandler dataHandler = new DataHandler(fileDataSource);
         response.setContent(dataHandler);
