@@ -35,7 +35,7 @@ public class EventEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getEventDetailsByIdRequest")
     @ResponsePayload
-    public GetEventDetailsByIdResponse getEventsByWeek(@RequestPayload GetEventDetailsByIdRequest request) {
+    public GetEventDetailsByIdResponse getEventDetailsById(@RequestPayload GetEventDetailsByIdRequest request) {
         return eventService.getEventById(request.getId());
     }
 
