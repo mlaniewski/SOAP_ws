@@ -44,7 +44,23 @@
     <xs:element name="addEventRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="eventDto" type="tns:eventDto"/>
+                <xs:element name="event" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="modifyEventRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="event" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteEventRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventId" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -90,6 +106,22 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="modifyEventResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventDetails" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteEventResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:opStatusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="generateEventsPDFResponse">
         <xs:complexType>
             <xs:sequence>
@@ -111,22 +143,17 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="eventDto">
-        <xs:sequence>
-            <xs:element name="name" type="xs:string"/>
-            <xs:element name="type" type="tns:type"/>
-            <xs:element name="date" type="xs:date"/>
-            <xs:element name="week" type="xs:int"/>
-            <xs:element name="month" type="xs:int"/>
-            <xs:element name="year" type="xs:int"/>
-            <xs:element name="description" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:simpleType name="type">
         <xs:restriction base="xs:string">
             <xs:enumeration value="SPORT"/>
             <xs:enumeration value="CULTURAL"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="opStatusCode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="FAULT"/>
         </xs:restriction>
     </xs:simpleType>
 

@@ -1,7 +1,7 @@
 package com.example.producingwebservice.endpoint;
 
 import com.bialystok.event.ws.*;
-import com.example.producingwebservice.service.impl.EventServiceImpl;
+import com.example.producingwebservice.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -13,7 +13,7 @@ public class EventEndpoint {
     private static final String NAMESPACE_URI = "http://ws.event.bialystok.com";
 
     @Autowired
-    private EventServiceImpl eventService;
+    private EventService eventService;
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getAllEventsRequest")
     @ResponsePayload
@@ -42,7 +42,19 @@ public class EventEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addEventRequest")
     @ResponsePayload
     public AddEventResponse addEvent(@RequestPayload AddEventRequest request) {
-        return eventService.addEvent(request.getEventDto());
+        return eventService.addEvent(request.getEvent());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "modifyEventRequest")
+    @ResponsePayload
+    public ModifyEventResponse modifyEvent(@RequestPayload ModifyEventRequest request) {
+        return eventService.modifyEvent(request.getEvent());
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteEventRequest")
+    @ResponsePayload
+    public DeleteEventResponse modifyEvent(@RequestPayload DeleteEventRequest request) {
+        return eventService.deleteEvent(request.getEventId());
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "generateEventsPDFRequest")

@@ -55,10 +55,30 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public AddEventResponse addEvent(EventDto eventDto) {
+    public AddEventResponse addEvent(Event event) {
         AddEventResponse response = new AddEventResponse();
-        Event saved = eventRepository.add(eventDto);
+        Event saved = eventRepository.add(event);
         response.setEventDetails(saved);
+        return response;
+    }
+
+    @Override
+    public ModifyEventResponse modifyEvent(Event event) {
+        ModifyEventResponse response = new ModifyEventResponse();
+        Event modified = eventRepository.update(event);
+        response.setEventDetails(modified);
+        return response;
+    }
+
+    @Override
+    public DeleteEventResponse deleteEvent(Integer eventId) {
+        DeleteEventResponse response = new DeleteEventResponse();
+        Event deleted = eventRepository.delete(eventId);
+        if (deleted == null) {
+            response.setStatus(OpStatusCode.FAULT);
+        } else {
+            response.setStatus(OpStatusCode.OK);
+        }
         return response;
     }
 

@@ -1,7 +1,6 @@
 package com.example.producingwebservice.repository;
 
 import com.bialystok.event.ws.Event;
-import com.bialystok.event.ws.EventDto;
 import com.bialystok.event.ws.Type;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import org.springframework.stereotype.Component;
@@ -73,18 +72,33 @@ public class EventRepository {
         return events.get(id);
     }
 
-    public Event add(EventDto eventDto) {
-        Event event = new Event();
+    public Event add(Event event) {
         int id = events.size();
         event.setId(id);
-        event.setName(eventDto.getName());
-        event.setType(eventDto.getType());
-        event.setDate(eventDto.getDate());
-        event.setDescription(eventDto.getDescription());
-        event.setYear(eventDto.getYear());
-        event.setMonth(eventDto.getMonth());
-        event.setWeek(eventDto.getWeek());
         events.put(id, event);
         return event;
+    }
+
+    public Event update(Event eventReq) {
+        Event event = events.get(eventReq.getId());
+        if (event == null) {
+            return null;
+        }
+        event.setName(eventReq.getName());
+        event.setType(eventReq.getType());
+        event.setDate(eventReq.getDate());
+        event.setDescription(eventReq.getDescription());
+        event.setYear(eventReq.getYear());
+        event.setMonth(eventReq.getMonth());
+        event.setWeek(eventReq.getWeek());
+        return event;
+    }
+
+    public Event delete(Integer eventId) {
+        Event event = events.get(eventId);
+        if (event == null) {
+            return null;
+        }
+        return events.remove(eventId);
     }
 }

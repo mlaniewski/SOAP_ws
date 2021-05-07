@@ -28,7 +28,8 @@ public class WebServiceConfig extends WsConfigurationSupport {
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setContextPath("com.bialystok.event.ws");
-        marshaller.setMtomEnabled(true); // IMPORTANT
+        //marshaller.setClassesToBeBound(GenerateEventsPDFResponse.class);
+        marshaller.setMtomEnabled(true); //TODO IMPORTANT
         return marshaller;
     }
 

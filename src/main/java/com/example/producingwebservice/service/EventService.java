@@ -9,6 +9,8 @@ public interface EventService {
     GetEventsByDateResponse getEventsByDate(XMLGregorianCalendar date);
     GetEventsByWeekResponse getEventsByWeek(Integer week);
     GetEventDetailsByIdResponse getEventById(Integer id);
-    AddEventResponse addEvent(EventDto eventDto);
+    AddEventResponse addEvent(Event eventDto);
     GenerateEventsPDFResponse generateEventsListAsPDF();
+    ModifyEventResponse modifyEvent(Event eventDto);
+    DeleteEventResponse deleteEvent(Integer eventId);
 }
