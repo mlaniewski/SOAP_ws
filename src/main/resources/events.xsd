@@ -65,6 +65,24 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="loginRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registerRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="username" type="xs:string"/>
+                <xs:element name="password" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <!-- Responses -->
     <xs:element name="getAllEventsResponse">
         <xs:complexType>
@@ -130,6 +148,22 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="loginResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="user" type="tns:user"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="registerResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="tns:opStatusCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
     <xs:complexType name="event">
         <xs:sequence>
             <xs:element name="id" type="xs:int"/>
@@ -156,5 +190,14 @@
             <xs:enumeration value="FAULT"/>
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:complexType name="user">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+            <xs:element name="admin" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
 
 </xs:schema>
