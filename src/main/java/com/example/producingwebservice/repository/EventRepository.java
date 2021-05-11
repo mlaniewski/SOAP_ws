@@ -19,10 +19,10 @@ public class EventRepository {
     public void initData() {
         Event event1 = new Event();
         event1.setId(0);
-        event1.setName("Event 0");
+        event1.setName("Biegi przełajowe");
         event1.setType(Type.SPORT);
         event1.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 5, 10, 12, 0, 0));
-        event1.setDescription("Long description of Event 1");
+        event1.setDescription("Na przestrzeni ostatnich kilkunastu lat bieganie w Polsce ewoluowało z dość niszowej dyscypliny, uprawianej przez klubowych lekkoatletów, do rangi zjawiska masowego, którego emanacją stały się wielotysięczne biegi uliczne w dużych miastach i setki lokalnych zawodów w mniejszych gminach.");
         event1.setYear(2021);
         event1.setMonth(5);
         event1.setWeek(15);
@@ -31,15 +31,27 @@ public class EventRepository {
 
         Event event2 = new Event();
         event2.setId(1);
-        event2.setName("Event 1");
+        event2.setName("Musical \"DOKTOR ŻYWAGO\"");
         event2.setType(Type.CULTURAL);
         event2.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 1, 20, 22, 30, 0));
-        event2.setDescription("Long description of Event 2");
+        event2.setDescription("Dzieło uznane za jedną z najpiękniejszych historii o miłości, pełne emocji, ponadczasowe „love story” wraca na deski Opery i Filharmonii Podlaskiej!");
         event2.setYear(2021);
         event2.setMonth(1);
         event2.setWeek(4);
 
         events.put(event2.getId(), event2);
+
+        Event event3 = new Event();
+        event3.setId(2);
+        event3.setName("MOB. Widziane od środka");
+        event3.setType(Type.CULTURAL);
+        event3.setDate(XMLGregorianCalendarImpl.createDateTime(2021, 1, 20, 22, 30, 0));
+        event3.setDescription("Białostocki Ośrodek Kultury zaprasza na wystawę i spotkanie: MOB. Widziane od środka.");
+        event3.setYear(2021);
+        event3.setMonth(1);
+        event3.setWeek(4);
+
+        events.put(event3.getId(), event3);
     }
 
     public List<Event> findAll() {
